@@ -1,0 +1,4 @@
+.git*
+.settings
+.project
+.travis.yml

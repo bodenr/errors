@@ -1,0 +1,36 @@
+{
+    "name": "errors",
+    "version": "0.1.0",
+    "description": "A comprehensive, robust, yet lightweight set of error utilities for node.js enabling you to do errors more effectively.",
+    "keywords": [
+        "error",
+        "exceptions",
+        "express",
+        "connect",
+        "utilities"
+    ],
+    "author": "Boden Russell <bodensemail@gmail.com>",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/bodenr/errors.git"
+    },
+    "main": "index",
+    "engines": {
+        "node": "*"
+    },
+    "scripts": {
+        "test": "make test"
+    },
+    "directories": {
+        "doc": "./doc"  
+    },
+    "devDependencies": {
+        "mocha": "*",
+        "should": "*",
+        "supertest": "*",
+        "express": "*",
+        "markdox": "*",
+        "dox-foundation": "*"
+    },
+    "license": "MIT"
+}
