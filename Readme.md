@@ -1,7 +1,7 @@
 [![Build Status](https://secure.travis-ci.org/bodenr/errors.png)](http://travis-ci.org/bodenr/errors)
 # errors
     
-JSErrors is a comprehensive and robust, yet lightweight, set of error utilities for 
+Errors is a comprehensive and robust, yet lightweight, set of error utilities for 
 [node.js](http://nodejs.org) enabling you to _do_ errors more effectively.
 
 ## Features
