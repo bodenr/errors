@@ -26,9 +26,9 @@
     },
     "devDependencies": {
         "mocha": "*",
-        "should": "*",
+        "should": "1.2.1",
         "supertest": "*",
-        "express": "*",
+        "express": "3.0.0",
         "markdox": "*",
         "dox-foundation": "*"
     },
