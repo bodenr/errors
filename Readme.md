@@ -282,6 +282,9 @@ throw new errors.Http500Error('Something bad happened');
 
 ## Connect/Express middleware integration
 
+**Compatibility**
+Errors version 0.1.0 only works with Express < 4.0.0. 
+
 You can use your custom errors with connect's or express's `errorHandler()`
 middleware as you might expect:
 
