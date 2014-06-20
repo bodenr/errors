@@ -1,6 +1,6 @@
 {
     "name": "errors",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "A comprehensive, robust, yet lightweight set of error utilities for node.js enabling you to do errors more effectively.",
     "keywords": [
         "error",
@@ -9,7 +9,7 @@
         "connect",
         "utilities"
     ],
-    "author": "Boden Russell <bodensemail@gmail.com>",
+    "author": "Boden Russell <bodenru@gmail.com>",
     "repository": {
         "type": "git",
         "url": "git://github.com/bodenr/errors.git"

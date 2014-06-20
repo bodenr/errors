@@ -126,6 +126,63 @@ Response: Request a file you have permissions to access
 
 ```
 
+Use the options style constructor to assign standard properties:
+```js
+console.log(new errors.Http401Error({
+	message: "Expired Token",
+	explanation: "Your token has expired"}).toString());
+```
+
+outputs:
+```
+Http401Error: Expired Token
+Code: 401
+Explanation: Your token has expired
+Error: Expired Token
+```
+
+Using the options style constructor you can also assign
+arbitrary non-standard properties:
+```js
+console.log(new errors.Http401Error({
+	message: "Expired Token",
+	explanation: "Your token has expired",
+	expired: new Date()}).toString());
+```
+
+outputs:
+```
+Http401Error: Expired Token
+Code: 401
+Explanation: Your token has expired
+expired: Fri Jun 20 2014 04:19:41 GMT-0400 (EDT)
+```
+
+Note however that you cannot assign values to the
+`stack`, `name` or `code` standard property:
+```js
+console.log(new errors.Http401Error({
+	name: "ExpiredToken"}).toString());
+```
+
+outputs:
+```
+/home/boden/workspace/errors/lib/errors.js:261
+    			throw Error("Properties 'stack', 'name' or 'code' " +
+    			      ^
+Error: Properties 'stack', 'name' or 'code' cannot be overridden
+    at Error (<anonymous>)
+    at new scope.(anonymous function) (/home/boden/workspace/errors/lib/errors.js:261:14)
+    at Object.<anonymous> (/home/boden/workspace/errors/examples/basic/usage.js:126:13)
+    at Module._compile (module.js:456:26)
+    at Object.Module._extensions..js (module.js:474:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+    at Function.Module.runMain (module.js:497:10)
+    at startup (node.js:119:16)
+    at node.js:906:3
+```
+
 ## Error codes
 
 If you don't provide a `code` when defining the error, a unique code will

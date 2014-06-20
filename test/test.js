@@ -193,3 +193,41 @@ describe('errors.title()', function() {
         errors.title().should.equal('My Title');
     });
 });
+
+describe('options style constructor', function() {
+	var IdentifiableError = errors.create('IdentifiableError'),
+		err = new IdentifiableError({message: 'Error with ref ID',
+			status: 501, refID: 'a1b2c3'});
+
+	it('should contain refID property', function() {
+		err.refID.should.equal('a1b2c3');
+	});
+
+	it('should have overridden status', function() {
+		err.status.should.equal(501);
+	});
+
+	it('toString() should output refID', function() {
+		err.toString().should.include('refID: a1b2c3');
+	});
+
+	it('toJSON() should include refID', function() {
+		err.toJSON().should.include({refID: 'a1b2c3'});
+	});
+
+	it('should have overriden message', function() {
+		err.toString().should.include(': Error with ref ID');
+	});
+
+	it('should not allow overriding of stack', function() {
+		new IdentifiableError({stack: 'fail'}).should.throw();
+	});
+
+	it('should not allow overriding of name', function() {
+		new IdentifiableError({name: 'fail'}).should.throw();
+	});
+
+	it('should not allow overriding of code', function() {
+		new IdentifiableError({code: 601}).should.throw();
+	});
+});

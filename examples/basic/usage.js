@@ -96,3 +96,17 @@ console.log("-------------");
 errors.stacks(true);
 console.log(new errors.Http413Error().toString());
 console.log(new errors.Http413Error().toJSON());
+
+
+console.log("---------------");
+
+// options style constructor
+errors.create({name:'IdentifiableError'});
+console.log(new errors.IdentifiableError({
+	message: "Unexpected error",
+	refID: "a1b2c3",
+	status: 500}).toString());
+console.log(new errors.IdentifiableError({
+	message: "Unexpected error",
+	refID: "a1b2c3",
+	status: 500}).toJSON());
