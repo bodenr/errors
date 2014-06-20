@@ -220,14 +220,14 @@ describe('options style constructor', function() {
 	});
 
 	it('should not allow overriding of stack', function() {
-		new IdentifiableError({stack: 'fail'}).should.throw();
+		(function() {new IdentifiableError({stack: 'fail'});}).should.throw();
 	});
 
 	it('should not allow overriding of name', function() {
-		new IdentifiableError({name: 'fail'}).should.throw();
+		(function() {new IdentifiableError({name: 'fail'});}).should.throw();
 	});
 
 	it('should not allow overriding of code', function() {
-		new IdentifiableError({code: 601}).should.throw();
+		(function() {new IdentifiableError({code: 601});}).should.throw();
 	});
 });
