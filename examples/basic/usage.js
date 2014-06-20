@@ -110,3 +110,11 @@ console.log(new errors.IdentifiableError({
 	message: "Unexpected error",
 	refID: "a1b2c3",
 	status: 500}).toJSON());
+
+
+console.log("---------------");
+
+// override status in proto
+errors.create({name: 'CustomHttpError', status: 488});
+console.log(new errors.CustomHttpError().toString());
+console.log(new errors.CustomHttpError().toJSON());

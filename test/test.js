@@ -231,3 +231,20 @@ describe('options style constructor', function() {
 		(function() {new IdentifiableError({code: 601});}).should.throw();
 	});
 });
+
+describe('status code override', function() {
+	var CustomHttpError = errors.create({name: 'CustomHttpError', status: 409}),
+		err = new CustomHttpError();
+
+	it('should have status of 409', function() {
+		err.status.should.equal(409);
+	});
+
+	it('should include 409 status in toJSON()', function() {
+		err.toJSON().should.include({status: 409});
+	});
+
+	it('should allow overriding in constructor', function() {
+		new CustomHttpError({status:411}).status.should.equal(411);
+	});
+});
