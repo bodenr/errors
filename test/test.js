@@ -248,3 +248,15 @@ describe('status code override', function() {
 		new CustomHttpError({status:411}).status.should.equal(411);
 	});
 });
+
+describe('errors.isError()', function(){
+    var legitError = new errors.HttpError();
+
+    it('should return true for legit errors', function() {
+        errors.isError(legitError).should.be.ok;
+    });
+    
+    it('should return false for other objects', function() {
+        errors.isError({}).should.not.be.ok;
+    });
+});
