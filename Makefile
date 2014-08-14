@@ -1,4 +1,4 @@
-PROJECT := $(realpath $(dir $(lastword $(MAKEFILE_LIST))))
+PROJECT := "$(realpath $(dir $(lastword $(MAKEFILE_LIST))))"
 MD_PATH := $(PROJECT)/doc/md/
 HTML_PATH := $(PROJECT)/doc/html/
 NODE_BIN := $(PROJECT)/node_modules/.bin/
