@@ -65,7 +65,7 @@ function testError(code) {
     };
 };
 
-for (code in http.STATUS_CODES) {
+for (var code in http.STATUS_CODES) {
     if (http.STATUS_CODES.hasOwnProperty(code) && code >= 400) {
         describe('GET /errors/' + code, testError(code));
     }
