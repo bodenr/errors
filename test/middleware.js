@@ -110,7 +110,7 @@ function validate(app, includeStack, connectCompat, title) {
 express.errorHandler.title = 'Out Of The Box Connect';
 var app = createServer(3942, express.errorHandler());
 describe('Connect errorHandler()', function() {
-    validate(app, true, false, express.errorHandler.title);
+    validate(app, true, true, express.errorHandler.title);
 });
 
 // errors middleware in connect compat mode
