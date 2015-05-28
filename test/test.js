@@ -1,6 +1,7 @@
 
 var errors = require('..')
-    , http = require('http');
+    , http = require('http')
+    , should = require('should');
 
 describe('errors export structure', function() {
     it('should contain find() method', function() {
@@ -20,7 +21,11 @@ describe('errors export structure', function() {
         httpError.code.should.be.above(599);
     });
 
-    for (code in http.STATUS_CODES) {
+    it('should not leak to global.code', function() {
+        should.not.exist(global.code);
+    });
+
+    for (var code in http.STATUS_CODES) {
         it('should contain ' + http.STATUS_CODES[code] + ' Error', function() {
             var errorName = 'Http' + code + 'Error'
                 , errorInstance = new errors[errorName]();
@@ -195,58 +200,58 @@ describe('errors.title()', function() {
 });
 
 describe('options style constructor', function() {
-	var IdentifiableError = errors.create('IdentifiableError'),
-		err = new IdentifiableError({message: 'Error with ref ID',
-			status: 501, refID: 'a1b2c3'});
+    var IdentifiableError = errors.create('IdentifiableError'),
+        err = new IdentifiableError({message: 'Error with ref ID',
+            status: 501, refID: 'a1b2c3'});
 
-	it('should contain refID property', function() {
-		err.refID.should.equal('a1b2c3');
-	});
+    it('should contain refID property', function() {
+        err.refID.should.equal('a1b2c3');
+    });
 
-	it('should have overridden status', function() {
-		err.status.should.equal(501);
-	});
+    it('should have overridden status', function() {
+        err.status.should.equal(501);
+    });
 
-	it('toString() should output refID', function() {
-		err.toString().should.include('refID: a1b2c3');
-	});
+    it('toString() should output refID', function() {
+        err.toString().should.include('refID: a1b2c3');
+    });
 
-	it('toJSON() should include refID', function() {
-		err.toJSON().should.include({refID: 'a1b2c3'});
-	});
+    it('toJSON() should include refID', function() {
+        err.toJSON().should.include({refID: 'a1b2c3'});
+    });
 
-	it('should have overriden message', function() {
-		err.toString().should.include(': Error with ref ID');
-	});
+    it('should have overriden message', function() {
+        err.toString().should.include(': Error with ref ID');
+    });
 
-	it('should not allow overriding of stack', function() {
-		(function() {new IdentifiableError({stack: 'fail'});}).should.throw();
-	});
+    it('should not allow overriding of stack', function() {
+        (function() {new IdentifiableError({stack: 'fail'});}).should.throw();
+    });
 
-	it('should not allow overriding of name', function() {
-		(function() {new IdentifiableError({name: 'fail'});}).should.throw();
-	});
+    it('should not allow overriding of name', function() {
+        (function() {new IdentifiableError({name: 'fail'});}).should.throw();
+    });
 
-	it('should not allow overriding of code', function() {
-		(function() {new IdentifiableError({code: 601});}).should.throw();
-	});
+    it('should not allow overriding of code', function() {
+        (function() {new IdentifiableError({code: 601});}).should.throw();
+    });
 });
 
 describe('status code override', function() {
-	var CustomHttpError = errors.create({name: 'CustomHttpError', status: 409}),
-		err = new CustomHttpError();
+    var CustomHttpError = errors.create({name: 'CustomHttpError', status: 409}),
+        err = new CustomHttpError();
 
-	it('should have status of 409', function() {
-		err.status.should.equal(409);
-	});
+    it('should have status of 409', function() {
+        err.status.should.equal(409);
+    });
 
-	it('should include 409 status in toJSON()', function() {
-		err.toJSON().should.include({status: 409});
-	});
+    it('should include 409 status in toJSON()', function() {
+        err.toJSON().should.include({status: 409});
+    });
 
-	it('should allow overriding in constructor', function() {
-		new CustomHttpError({status:411}).status.should.equal(411);
-	});
+    it('should allow overriding in constructor', function() {
+        new CustomHttpError({status:411}).status.should.equal(411);
+    });
 });
 
 describe('errors.isError()', function(){
@@ -255,7 +260,7 @@ describe('errors.isError()', function(){
     it('should return true for legit errors', function() {
         errors.isError(legitError).should.be.ok;
     });
-    
+
     it('should return false for other objects', function() {
         errors.isError({}).should.not.be.ok;
     });
