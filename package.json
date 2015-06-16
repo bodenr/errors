@@ -1,6 +1,6 @@
 {
     "name": "errors",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "description": "A comprehensive, robust, yet lightweight set of error utilities for node.js enabling you to do errors more effectively.",
     "keywords": [
         "error",

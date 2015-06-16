@@ -323,6 +323,37 @@ Code: 1100
 
 ```
 
+## Native errors
+
+Often times you need to extract 'errors-like' properties from native error
+objects. For example you have a native JS or node error and you want to 
+extract it's errors-like properties. An error's module-level function
+called `errors.errorToJSON()` allows you to do this.
+
+For example to extract error properties from a native error (`errors.stacks`
+is set to `false` in this example):
+```js
+console.log("%j", errors.errorToJSON(new TypeError("Bad type")));
+```
+
+outputs:
+```
+{"message":"Bad type","name":"TypeError"}
+```
+
+You can also remap error attributes which may be nested. For example:
+
+```js
+console.log("%j", errors.errorToJSON(new TypeError("Bad type"), 
+    {'className': ['constructor.name'], 'message': ['message']}));
+```
+
+outputs:
+```
+{"className":"TypeError","message":"Bad type"}
+```
+
+
 ## Predefined HTTP 4xx-5xx errors
 
 The errors module predefines a set of errors which represent HTTP
